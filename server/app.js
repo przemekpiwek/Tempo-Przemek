@@ -1,12 +1,20 @@
 const express = require("express");
 const cors = require("cors");
 const PORT = 4000;
+const {
+  teamsDetailsDataHandler,
+  teamsOverviewDataHandler,
+} = require("./handlers/index");
 
 const app = express();
 const router = express.Router();
 
 app.use(express.json());
 app.use(cors());
+
+router.get("/test", (req, res) => res.send("hello from api"));
+// router.get("teamsOverviewData", teamsOverviewDataHandler);
+// router.get("teamsDetailsData/:id", teamsDetailsDataHandler);
 
 app.use("/api", router);
 
