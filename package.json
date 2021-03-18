@@ -1,0 +1,25 @@
+{
+  "name": "Tempo-Przemek",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"yarn --cwd client start\" \"yarn --cwd server start\"",
+    "install": "yarn --cwd client install && yarn --cwd server install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/przemekpiwek/Tempo-Przemek.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/przemekpiwek/Tempo-Przemek/issues"
+  },
+  "homepage": "https://github.com/przemekpiwek/Tempo-Przemek#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0"
+  }
+}
