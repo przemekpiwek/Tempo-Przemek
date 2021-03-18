@@ -1,8 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
- /* css reset */
-
+@import url('https://fonts.googleapis.com/css?family=Nunito:400');
  /* css reset */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -56,6 +55,40 @@ table {
 }
 
 html{
-    background: red
+	font-family: "Nunito", sans-serif;
+	font-weight: 400;
+	line-height: 1.75;
+	color: #000000;
+	
+
+	background-color: #0A192F;
+    --text: #CCD6F6;
+    --text-secondary: #8892B0;
+    --accent: #64FFD9;
+    --background: #0A192F;
+    --secondary-background: #172A45;
 }
+p {margin-bottom: 1rem;}
+
+h1, h2, h3, h4, h5 {
+  margin: 3rem 0 1.38rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 2.488rem;
+}
+
+h2 {font-size: 2.074rem;}
+
+h3 {font-size: 1.728rem;}
+
+h4 {font-size: 1.44rem;}
+
+h5 {font-size: 1.2rem;}
+
+
 `;

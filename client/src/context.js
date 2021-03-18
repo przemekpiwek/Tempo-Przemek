@@ -1,10 +1,21 @@
 import React, { createContext, useReducer } from "react";
 
 const initialState = {
-  currentData: [],
+  teamInfo: [],
+  userInfo: [],
 };
 
-const reducer = null;
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_TEAM_DATA":
+      return {
+        teamInfo: [state, ...action.payload],
+      };
+
+    default:
+      throw new Error();
+  }
+};
 
 export const TeamsUsersDataContext = createContext();
 
