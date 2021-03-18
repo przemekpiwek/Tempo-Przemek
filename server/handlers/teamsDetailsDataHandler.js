@@ -10,8 +10,7 @@ const teamsDetailsDataHandler = async (req, res) => {
       "content-type": "application/json",
     };
     const response = await fetch(TEAMS_REST_ENDPOINT, options);
-    // const jsonTeamsData = await response.json();
-    const jsonTeamsData = "hello";
+    const jsonTeamsData = await response.json();
     res.json({ status: 200, payload: jsonTeamsData });
   } catch (error) {
     res.json({ status: 500, payload: error });
