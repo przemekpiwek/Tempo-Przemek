@@ -1,5 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
+export const COLORS = {
+  text: "#CCD6F6",
+  textSecondary: "#8892B0",
+  accent: "#64FFD9",
+  background: "#0A192F",
+  secondaryBackground: "#172A45",
+};
+
 export const GlobalStyles = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Nunito:400');
  /* css reset */
@@ -61,12 +69,12 @@ html{
 	color: #000000;
 	
 
-	background-color: #0A192F;
-    --text: #CCD6F6;
-    --text-secondary: #8892B0;
-    --accent: #64FFD9;
-    --background: #0A192F;
-    --secondary-background: #172A45;
+	background-color: ${COLORS.background};
+    --text: ${COLORS.text};
+    --text-secondary: ${COLORS.textSecondary};
+    --accent: ${COLORS.accent};
+    --background: ${COLORS.background};
+    --secondary-background: ${COLORS.secondaryBackground};
 	--min-input-height: 50px;
 	--min-button-height: 50px;
 }

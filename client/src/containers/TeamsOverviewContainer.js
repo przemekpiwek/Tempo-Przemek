@@ -5,32 +5,39 @@ import Table from "../components/Table/Table";
 import { TEAMS_TABLE_HEADERS } from "../utils/helpers";
 import { TeamsUsersDataContext } from "../context";
 import TextInputContainer from "../containers/TextInputContainer";
+import Loader from "../components/Loader";
 
-const TeamsOverview = () => {
+const TeamsOverviewContainer = () => {
   const [state] = useContext(TeamsUsersDataContext);
-  const { teamInfo } = state;
+  const { teamInfo, loading } = state;
   const [suggestedTeamRows, SetSuggestedTeamRows] = useState([]);
 
   useEffect(() => {
     SetSuggestedTeamRows([...teamInfo]);
   }, [teamInfo]);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
-    <TeamsOverviewWrapper>
-      <HeaderWrapper>
-        <PageTitle content={"Teams Overview"} />
-        <TextInputContainer
-          tableRows={teamInfo}
-          setTableRows={SetSuggestedTeamRows}
+    <>
+      <TeamsOverviewWrapper>
+        <HeaderWrapper>
+          <PageTitle content={"Teams Overview"} />
+          <TextInputContainer
+            tableRows={teamInfo}
+            setTableRows={SetSuggestedTeamRows}
+          />
+        </HeaderWrapper>
+        <DescriptionText>A list of teams available.</DescriptionText>
+        <Table
+          headers={TEAMS_TABLE_HEADERS}
+          rows={suggestedTeamRows}
+          isTeamsTable={true}
         />
-      </HeaderWrapper>
-      <DescriptionText>A list of teams available.</DescriptionText>
-      <Table
-        headers={TEAMS_TABLE_HEADERS}
-        rows={suggestedTeamRows}
-        isTeamsTable={true}
-      />
-    </TeamsOverviewWrapper>
+      </TeamsOverviewWrapper>
+    </>
   );
 };
 
@@ -50,4 +57,4 @@ const DescriptionText = styled.h6`
   color: var(--text-secondary);
 `;
 
-export default TeamsOverview;
+export default TeamsOverviewContainer;

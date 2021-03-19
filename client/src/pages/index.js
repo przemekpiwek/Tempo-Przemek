@@ -5,8 +5,8 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import TeamsOverview from "./TeamsOverview";
-import UserDetails from "./UserDetails";
+import TeamsOverviewContainer from "../containers/TeamsOverviewContainer";
+import UserDetailsContainer from "../containers/UserDetailsContainer";
 import { TeamsUsersDataContext } from "../context";
 
 const ROUTES = {
@@ -18,17 +18,17 @@ const ROUTES = {
 export default function Pages() {
   const teamsEndpoint = "/api/teamsDetailsData";
   const usersEndpoint = "/api/userDetailsData";
-  const options = {
-    method: "GET",
-    Accept: "application/json",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  const [state, dispatch] = useContext(TeamsUsersDataContext);
+  const [, dispatch] = useContext(TeamsUsersDataContext);
 
   useEffect(() => {
+    const options = {
+      method: "GET",
+      Accept: "application/json",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
     const fetchTeamsAndUserData = async () => {
       const endpointArray = [
         { type: "teams", endpoint: teamsEndpoint },
@@ -71,17 +71,24 @@ export default function Pages() {
           }
         })
       );
+      dispatch({
+        type: "CHANGE_LOADING_STATE",
+        payload: false,
+      });
     };
 
     fetchTeamsAndUserData();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Router>
       <Switch>
         <Redirect exact from={ROUTES.HOME} to={ROUTES.TEAMS_OVERVIEW} />
-        <Route path={ROUTES.TEAMS_OVERVIEW} component={TeamsOverview} />
-        <Route path={ROUTES.USERS_DETAILS} component={UserDetails} />
+        <Route
+          path={ROUTES.TEAMS_OVERVIEW}
+          component={TeamsOverviewContainer}
+        />
+        <Route path={ROUTES.USERS_DETAILS} component={UserDetailsContainer} />
       </Switch>
     </Router>
   );

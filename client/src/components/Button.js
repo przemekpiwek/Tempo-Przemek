@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { NavigationWrapper } from "../containers/UserDetailsContainer";
 
 const Button = ({ content, onClick }) => {
   return <StyledButton onClick={onClick}>{content}</StyledButton>;
@@ -18,6 +19,19 @@ const StyledButton = styled.button`
     cursor: pointer;
     background-color: var(--text-secondary);
     color: var(--accent);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  ${NavigationWrapper} & {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
   }
 `;
 

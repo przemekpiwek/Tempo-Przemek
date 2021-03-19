@@ -3,6 +3,7 @@ import React, { createContext, useReducer } from "react";
 const initialState = {
   teamInfo: [],
   userInfo: [],
+  loading: true,
 };
 
 const reducer = (state, action) => {
@@ -17,7 +18,11 @@ const reducer = (state, action) => {
         ...state,
         userInfo: [...action.payload],
       };
-
+    case "CHANGE_LOADING_STATE":
+      return {
+        ...state,
+        loading: action.payload,
+      };
     default:
       throw new Error();
   }

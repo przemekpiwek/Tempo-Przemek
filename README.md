@@ -21,3 +21,5 @@ I always begin my projects by creating a scaffolding of my directories. I usuall
 After reading the requirements, I assumed accessing the data would be sensitive information, so I build out a backend to fetch the data rather than querying from the frontend. Next, I thought about what UI components would be reusable and created their appropriate components. I used styled-components as I am a fan of the CSS-in-JSS paradigm.
 
 Initially, I was a little confused about what was expected in state-management requirements. I kept it simple by adding a context that provided all the fetched data to the different pages.
+
+I decided to store all data in react context because there was a small amount of data. If we were retrieving data from a database and were interested in scalability as our database grew larger, it would be smarter to create separate endpoints to fetch the necessary data for each appropriate page (i.e. users and teams).
