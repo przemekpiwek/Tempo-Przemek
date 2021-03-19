@@ -67,6 +67,8 @@ html{
     --accent: #64FFD9;
     --background: #0A192F;
     --secondary-background: #172A45;
+	--min-input-height: 50px;
+	--min-button-height: 50px;
 }
 p {margin-bottom: 1rem;}
 
