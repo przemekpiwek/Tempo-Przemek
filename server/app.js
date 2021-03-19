@@ -14,7 +14,7 @@ app.use(cors());
 
 router.get("/test", (req, res) => res.send("hello from api"));
 router.get("/teamsDetailsData", teamsDetailsDataHandler);
-router.get("/userDetailsData/:id", userDetailsDataHandler);
+router.get("/userDetailsData", userDetailsDataHandler);
 
 app.use("/api", router);
 

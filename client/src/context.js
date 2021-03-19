@@ -9,7 +9,13 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_TEAM_DATA":
       return {
-        teamInfo: [state, ...action.payload],
+        ...state,
+        teamInfo: [...action.payload],
+      };
+    case "ADD_USER_DATA":
+      return {
+        ...state,
+        userInfo: [...action.payload],
       };
 
     default:

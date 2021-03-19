@@ -13,7 +13,6 @@ const StyledTH = styled.th`
   color: var(--accent);
   padding: 6px 14px;
   border-bottom: 3px solid var(--secondary-background);
-
   flex: ${(props) => (props.index === 0 ? "1 1 0%" : "2 1 0%")};
 `;
 
