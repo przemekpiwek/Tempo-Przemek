@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const TableBodyCell = ({ content, children }) => {
-  const renderedContents = content ? content : children;
-  return <StyledTD>{renderedContents}</StyledTD>;
+const TableBodyCell = ({ content }) => {
+  return <StyledTD>{content}</StyledTD>;
 };
 
 const StyledTD = styled.td`

@@ -14,7 +14,7 @@ const TextInputContainer = ({ tableRows, setTableRows }) => {
   };
 
   React.useEffect(() => {
-    const filteredRows = tableRows.filter((row) => {
+    const filteredRows = tableRows?.filter((row) => {
       return row?.name?.toLowerCase().includes(value);
     });
     setTableRows([...filteredRows]);
