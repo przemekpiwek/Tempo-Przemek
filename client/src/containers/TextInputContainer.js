@@ -9,6 +9,9 @@ const TextInputContainer = ({ tableRows, setTableRows }) => {
   const buttonOnClick = () => {
     SetValue("");
   };
+  const inputOnChange = (ev) => {
+    SetValue(ev.target.value);
+  };
 
   React.useEffect(() => {
     const filteredRows = tableRows.filter((row) => {
@@ -19,7 +22,7 @@ const TextInputContainer = ({ tableRows, setTableRows }) => {
 
   return (
     <TextInputWrapper>
-      <TextInput value={value} SetValue={SetValue} />
+      <TextInput value={value} onChange={inputOnChange} />
       <Button content={"Clear"} onClick={buttonOnClick} />
     </TextInputWrapper>
   );

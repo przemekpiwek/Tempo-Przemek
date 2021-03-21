@@ -9,7 +9,7 @@ import TeamsOverviewContainer from "../containers/TeamsOverviewContainer";
 import UserDetailsContainer from "../containers/UserDetailsContainer";
 import { TeamsUsersDataContext } from "../context";
 
-const ROUTES = {
+export const ROUTES = {
   HOME: "/",
   TEAMS_OVERVIEW: "/teams",
   USERS_DETAILS: "/users",

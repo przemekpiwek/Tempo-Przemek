@@ -1,15 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const TextInput = ({ value, SetValue }) => {
+const TextInput = ({ value, onChange }) => {
   return (
     <Input
       type="text"
       value={value}
       placeholder="Search name"
-      onChange={(ev) => {
-        SetValue(ev.target.value);
-      }}
+      onChange={onChange}
     />
   );
 };

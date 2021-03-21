@@ -25,6 +25,7 @@ const Table = ({ headers, rows, isTeamsTable = false }) => {
         {rows.map((rowObject, rowIndex) => (
           <TableRow
             key={`body-row-${rowIndex}`}
+            data-testid={`tr-${rowIndex}`}
             isTeamsTable={isTeamsTable}
             onClick={() => rowClickHandler(rowObject)}
           >

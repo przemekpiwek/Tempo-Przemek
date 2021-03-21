@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import TextInputContainer from "../containers/TextInputContainer";
 import Loader from "../components/Loader";
 
-const UserDetails = () => {
+const UserDetailsContainer = () => {
   const [state] = useContext(TeamsUsersDataContext);
   const history = useHistory();
   const pathname = history.location.pathname;
@@ -76,4 +76,4 @@ const DescriptionText = styled.h6`
   color: var(--text-secondary);
 `;
 
-export default UserDetails;
+export default UserDetailsContainer;

@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { NavigationWrapper } from "../containers/UserDetailsContainer";
 
 const Button = ({ content, onClick }) => {
-  return <StyledButton onClick={onClick}>{content}</StyledButton>;
+  return (
+    <StyledButton data-testid="button" onClick={onClick}>
+      {content}
+    </StyledButton>
+  );
 };
 
 const StyledButton = styled.button`

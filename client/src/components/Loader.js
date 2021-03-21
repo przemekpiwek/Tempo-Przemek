@@ -6,7 +6,7 @@ import { COLORS } from "../styles/GlobalStyles";
 const Loader = () => {
   return (
     <LoaderWrapper>
-      <CircleLoader size={150} color={COLORS.accent} />
+      <CircleLoader data-test-id="loader" size={150} color={COLORS.accent} />
     </LoaderWrapper>
   );
 };

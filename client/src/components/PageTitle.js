@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const PageTitle = ({ content }) => {
-  return <Text>{content}</Text>;
+  return !!content && <Text data-testid="pagetitle">{content}</Text>;
 };
 
 const Text = styled.h1`
