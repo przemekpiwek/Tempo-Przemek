@@ -8,6 +8,12 @@ Git clone the repo into your terminal
 git clone https://github.com/przemekpiwek/Tempo-Przemek.git
 ```
 
+Open directory
+
+```
+cd Tempo-Przemek
+```
+
 Install dependencies and start app
 
 ```
