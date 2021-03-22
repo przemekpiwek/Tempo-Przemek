@@ -4,6 +4,7 @@ import styled from "styled-components";
 const TextInput = ({ value, onChange }) => {
   return (
     <Input
+      data-testid="text-input"
       type="text"
       value={value}
       placeholder="Search name"

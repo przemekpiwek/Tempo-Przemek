@@ -1,23 +1,41 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import PageTitle from "../components/PageTitle";
 import styled from "styled-components";
 import Table from "../components/Table/Table";
 import Button from "../components/Button";
-import { USERS_TABLE_HEADERS, findTeamName } from "../utils/helpers";
+import {
+  USERS_TABLE_HEADERS,
+  findTeamNameFromId,
+  filterTableRowName,
+  findUsersFromTeamId,
+} from "../utils/helpers";
 import { TeamsUsersDataContext } from "../context";
 import { useHistory } from "react-router-dom";
-import TextInputContainer from "../containers/TextInputContainer";
+import TextInput from "../components/TextInput";
 import Loader from "../components/Loader";
 
 const UserDetailsContainer = () => {
   const [state] = useContext(TeamsUsersDataContext);
+  const [textInputValue, SetTextInputValue] = useState("");
   const history = useHistory();
   const pathname = history.location.pathname;
   const teamId = pathname.split("/users/")[1] || null;
-  const teamName = findTeamName(teamId, state);
+  const teamName = findTeamNameFromId(teamId, state);
   const { userInfo, loading } = state;
 
-  const [suggestedUserRows, SetSuggestedUserRows] = useState([]);
+  const usersInCurrentTeam = findUsersFromTeamId(userInfo, teamId);
+
+  const tableRows = useMemo(
+    () => filterTableRowName(usersInCurrentTeam, textInputValue),
+    [textInputValue, usersInCurrentTeam]
+  );
+
+  const buttonOnClick = () => {
+    SetTextInputValue("");
+  };
+  const inputOnChange = (ev) => {
+    SetTextInputValue(ev.target.value);
+  };
 
   const returnOnClick = () => {
     history.push("/teams");
@@ -36,10 +54,10 @@ const UserDetailsContainer = () => {
           </NavigationWrapper>
           <HeaderWrapper>
             <PageTitle content={`${teamName}'s Users`} />
-            <TextInputContainer
-              tableRows={userInfo}
-              setTableRows={SetSuggestedUserRows}
-            />
+            <TextInputWrapper data-testid="text-input">
+              <TextInput value={textInputValue} onChange={inputOnChange} />
+              <Button content={"Clear"} onClick={buttonOnClick} />
+            </TextInputWrapper>
           </HeaderWrapper>
         </>
       )}
@@ -48,7 +66,7 @@ const UserDetailsContainer = () => {
       </DescriptionText>
       <Table
         headers={USERS_TABLE_HEADERS}
-        rows={suggestedUserRows}
+        rows={tableRows}
         isTeamsTable={false}
       />
     </UserDetailsWrapper>
@@ -74,6 +92,10 @@ const UserDetailsWrapper = styled.div`
 const DescriptionText = styled.h6`
   margin: 0;
   color: var(--text-secondary);
+`;
+
+const TextInputWrapper = styled.div`
+  display: flex;
 `;
 
 export default UserDetailsContainer;

@@ -1,20 +1,29 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import PageTitle from "../components/PageTitle";
 import styled from "styled-components";
 import Table from "../components/Table/Table";
 import { TEAMS_TABLE_HEADERS } from "../utils/helpers";
 import { TeamsUsersDataContext } from "../context";
-import TextInputContainer from "../containers/TextInputContainer";
+import Button from "../components/Button";
 import Loader from "../components/Loader";
+import TextInput from "../components/TextInput";
+import { filterTableRowName } from "../utils/helpers";
 
 const TeamsOverviewContainer = () => {
   const [state] = useContext(TeamsUsersDataContext);
+  const [textInputValue, SetTextInputValue] = useState("");
   const { teamInfo, loading } = state;
-  const [suggestedTeamRows, SetSuggestedTeamRows] = useState([]);
+  const tableRows = useMemo(
+    () => filterTableRowName(teamInfo, textInputValue),
+    [textInputValue, teamInfo]
+  );
 
-  useEffect(() => {
-    SetSuggestedTeamRows([...teamInfo]);
-  }, [teamInfo]);
+  const buttonOnClick = () => {
+    SetTextInputValue("");
+  };
+  const inputOnChange = (ev) => {
+    SetTextInputValue(ev.target.value);
+  };
 
   if (loading) {
     return <Loader />;
@@ -22,18 +31,19 @@ const TeamsOverviewContainer = () => {
 
   return (
     <>
-      <TeamsOverviewWrapper>
+      <TeamsOverviewWrapper data-testid="teams-wrapper">
         <HeaderWrapper>
           <PageTitle content={"Teams Overview"} />
-          <TextInputContainer
-            tableRows={teamInfo}
-            setTableRows={SetSuggestedTeamRows}
-          />
+          <TextInputWrapper>
+            <TextInput value={textInputValue} onChange={inputOnChange} />
+            <Button content={"Clear"} onClick={buttonOnClick} />
+          </TextInputWrapper>
         </HeaderWrapper>
         <DescriptionText>A list of teams available.</DescriptionText>
         <Table
+          data-testid="table"
           headers={TEAMS_TABLE_HEADERS}
-          rows={suggestedTeamRows}
+          rows={tableRows}
           isTeamsTable={true}
         />
       </TeamsOverviewWrapper>
@@ -46,7 +56,7 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const TeamsOverviewWrapper = styled.div`
+export const TeamsOverviewWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 60px 40px;
@@ -55,6 +65,10 @@ const TeamsOverviewWrapper = styled.div`
 const DescriptionText = styled.h6`
   margin: 0;
   color: var(--text-secondary);
+`;
+
+const TextInputWrapper = styled.div`
+  display: flex;
 `;
 
 export default TeamsOverviewContainer;

@@ -11,7 +11,6 @@ const Table = ({ headers, rows, isTeamsTable = false }) => {
       history.push(`/users/${itemObject.id}`);
     }
   };
-
   return (
     <TableWrapper>
       <THead>
